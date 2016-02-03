@@ -39,15 +39,35 @@ end
 # Part 2
 
 def hello(name)
-  # YOUR CODE HERE
+  return "Hello, " + name
 end
 
 def starts_with_consonant? s
-  # YOUR CODE HERE
+  s.downcase!
+  char_array = s.each_char.to_a
+  if char_array.empty?
+    return false
+  else
+    first_char = char_array[0]
+    if /[[:alpha:]]/.match(first_char) == nil
+      return false
+    elsif /[aeiou]/.match(first_char) == nil
+      return true
+    else
+      return false
+    end
+  end
 end
 
 def binary_multiple_of_4? s
-  # YOUR CODE HERE
+  if /[01]*/.match(s) != s
+      return false #not a binary number
+    else
+      if /[01]*00/.match(s) == nil
+        return false
+      else return true
+      end
+  end
 end
 
 # Part 3
