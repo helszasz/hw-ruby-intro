@@ -60,18 +60,33 @@ def starts_with_consonant? s
 end
 
 def binary_multiple_of_4? s
-  if /[01]*/.match(s) != s
-      return false #not a binary number
-    else
-      if /[01]*00/.match(s) == nil
-        return false
-      else return true
-      end
+  arr = /[01]*00/.match(s)
+  if (arr != nil && arr[0] == s) || s == "0"
+    print "here1"
+    return true
+  else 
+    print "here2"
+    return false
   end
 end
 
 # Part 3
 
 class BookInStock
-# YOUR CODE HERE
+  attr_accessor :isbn, :price
+  
+  def initialize(isbn, price)
+    if isbn == ""
+      raise ArgumentError.new("No ISBN given!")
+    end
+    if price <= 0
+      raise ArgumentError.new("Price must be greater than 0!")
+    end
+    @isbn = isbn
+    @price = price 
+  end
+  def price_as_string 
+    #@price = @price.round(2)
+    return sprintf('$%#.2f',@price)
+  end
 end
